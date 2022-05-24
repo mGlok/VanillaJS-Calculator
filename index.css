@@ -1,49 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body, html {
     margin: 0;
     padding: 0;
+    background-color: #4d4d4d;
+    font-family: 'Roboto', sans-serif;
+}
+header{
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.app-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
 }
 
-.calc-grid {
-    background-color: #1C1C1C;
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    min-height: 100vh;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: minmax(100px, auto) repeat(5, 100px);
+.calc {
+    width: 315px;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #202020;
+    border-radius: 15px;
 }
 
 .calc-screen {
-    grid-column: 1 / -1;
+    width: 300px;
+    height: 140px;
+    color: #fff;
+    text-align: right;
+    transform: translateY(55%);
+}
+.previous-operand{
+    font-size: 1rem;
+    font-weight: lighter;
+    color: rgba(255,255,255,87%);
+}
+.current-operand{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.calc-grid-wrapper {
+    width: 320px;
     display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    flex-direction: column;
-    padding: 10px;
-    word-wrap: break-word;
-    word-break: break-all;
+    justify-content: center;
+}
+
+.calc-buttons-wrapper {
+    width: 300px;
+    height: 450px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 button {
+    width: 70px;
+    height: 70px;
+    background-color: #323232;
+    border: 0px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 2rem;
-    border-radius: 90%;
-    margin: 5px;
-}
-.calc-light-gray{
-    background-color: #D4D4D2;
-}
-.calc-dark-gray{
-    background-color: #505050;
-    color: #fff;
 }
 
-.calc-orange {
-    background-color: #FF9500;
-    color: #fff;
+button:hover {
+    background-color: #434343;
 }
-
-.calc-span-2 {
-    grid-column: span 2;
-    border-radius: 50px;
+footer{
+    color: white;
 }
