@@ -6,11 +6,13 @@ body, html {
     background-color: #4d4d4d;
     font-family: 'Roboto', sans-serif;
 }
-header{
+
+header {
     color: white;
     font-size: 2rem;
     font-weight: bold;
 }
+
 .app-wrapper {
     width: 100%;
     height: 100vh;
@@ -18,7 +20,7 @@ header{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap:20px;
+    gap: 20px;
 }
 
 .calc {
@@ -35,14 +37,19 @@ header{
     height: 140px;
     color: #fff;
     text-align: right;
-    transform: translateY(55%);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin-bottom: 5px;
 }
-.previous-operand{
+
+.previous-operand {
     font-size: 1rem;
     font-weight: lighter;
-    color: rgba(255,255,255,87%);
+    color: rgba(255, 255, 255, 87%);
 }
-.current-operand{
+
+.current-operand {
     font-size: 2rem;
     font-weight: bold;
 }
@@ -67,11 +74,19 @@ button {
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
+    color: white;
+    font-size: 1.5rem;
+}
+
+button:nth-child(21) {
+    grid-column: span 2 / span 2;
+    width: 145px;
 }
 
 button:hover {
     background-color: #434343;
 }
-footer{
+
+footer {
     color: white;
 }
