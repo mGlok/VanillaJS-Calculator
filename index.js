@@ -13,3 +13,24 @@ let currentOperand = ''
 let previousOperand = ''
 let opereration = undefined
 
+const updateResoult = () => {
+    currentResoult.innerText = currentOperand
+    previousResoult.innerText = previousOperand
+}
+
+const addNumber = (number) => {
+    if (number === "•") {
+        if (currentOperand.includes('.')) {
+            return
+        }
+        number = '.'
+    }
+    currentOperand = currentOperand.toString() + number.toString()
+}
+
+numbers.forEach((number) => {
+    number.addEventListener('click', () => {
+        addNumber(number.innerText)
+        updateResoult()
+    })
+})
