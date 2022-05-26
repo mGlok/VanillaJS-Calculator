@@ -52,6 +52,8 @@ header {
 .current-operand {
     font-size: 2rem;
     font-weight: bold;
+    width: 300px;
+    white-space: pre-line;
 }
 
 .calc-grid-wrapper {
@@ -81,7 +83,11 @@ button:nth-child(1){
     grid-column: span 2 / span 2;
     width: 145px;
 }
-button:nth-child(20) {
+button:nth-child(2){
+    grid-column: span 2 / span 2;
+    width: 145px;
+}
+button:nth-child(19) {
     grid-column: span 2 / span 2;
     width: 145px;
 }

@@ -2,16 +2,15 @@
 
 const numbers = document.querySelectorAll('.numbers')
 const operators = document.querySelectorAll('.operator')
-const clearEntry = document.querySelectorAll('.clear-entry')
-const clear = document.querySelectorAll('clear')
-const remove = document.querySelectorAll('.delete')
-const equal = document.querySelectorAll('.equal')
+const clearEntry = document.querySelector('.clear-entry')
+const remove = document.querySelector('.delete')
+const equal = document.querySelector('.equal')
 const previousResult = document.querySelector('.previous-operand')
 const currentResult = document.querySelector('.current-operand')
 
 let currentOperand = ''
-let previousOperand = ''
 let operation = undefined
+let previousOperand = ''
 
 const calculate = () => {
     let operand
@@ -22,34 +21,39 @@ const calculate = () => {
     const previous = parseFloat(previousOperand)
     const current = parseFloat(currentOperand)
 
-    if (isNaN(previous || current)) {
+    if (isNaN(previous) || isNaN(current)) {
         return
     }
 
-    switch (operand) {
+    switch (operation) {
         case '+':
             operand = previous + current
-            break;
+            break
         case '-':
             operand = previous - current
-            break;
+            break
         case '×':
             operand = previous * current
-            break;
+            break
         case '÷':
-            operand = previous / current
-            break;
-        case '√':
-            operand = Math.pow(previous, 1 / current)
-            break;
-        case '%':
-            operand = previous / 100 * current
-            break;
+            if (current === 0) {
+                clearResult()
+                return
+            } else {
+                operand = previous / current
+            }
+            break
         case 'x²':
             operand = Math.pow(previous, current)
-            break;
+            break
+        case '√':
+            operand = Math.pow(previous, 1 / current)
+            break
+        case '%':
+            operand = previous / 100 * current
+            break
         default:
-            return;
+            return
     }
     currentOperand = operand
     operation = undefined
@@ -61,14 +65,17 @@ const chooseOperand = (operator) => {
     if (currentOperand === '') {
         return
     }
+    if (previousOperand !== '') {
+        const previous = previousResult.innerText
+        if (currentOperand.toString() === '0' && previous[previous.length - 1] === '÷') {
+            clearResult()
+            return
+        }
+        calculate()
+    }
     operation = operator
     previousOperand = currentOperand
     currentOperand = ''
-}
-
-const updateResult = () => {
-    currentResult.innerText = currentOperand
-    operation != null ? previousResult.innerText = previousOperand + operation : previousResult.innerText = ''
 }
 
 const addNumber = (number) => {
@@ -85,10 +92,15 @@ const removeNumber = () => {
     currentOperand = currentOperand.toString().slice(0, -1)
 }
 
+const updateResult = () => {
+    currentResult.innerText = currentOperand
+    operation != null ? previousResult.innerText = previousOperand + operation : previousResult.innerText = ''
+}
+
 const clearResult = () => {
     currentOperand = ''
-    previousOperand = ''
     operation = undefined
+    previousOperand = ''
 }
 
 numbers.forEach((number) => {
@@ -98,23 +110,24 @@ numbers.forEach((number) => {
     })
 })
 
-remove.addEventListener('click', () => {
-    removeNumber()
-    updateResult()
-})
-
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
         chooseOperand(operator.innerText)
         updateResult()
     })
-});
+})
 
 equal.addEventListener('click', () => {
     calculate()
     updateResult()
 })
-clearEntry.addEventListener('click',()=>{
+
+remove.addEventListener('click', () => {
+    removeNumber()
+    updateResult()
+})
+
+clearEntry.addEventListener('click', () => {
     clearResult()
     updateResult()
 })
