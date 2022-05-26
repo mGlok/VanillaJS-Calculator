@@ -28,9 +28,18 @@ const addNumber = (number) => {
     currentOperand = currentOperand.toString() + number.toString()
 }
 
+const removeNumber = () => {
+    currentOperand = currentOperand.toString().slice(0,-1)
+}
+
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
         addNumber(number.innerText)
         updateResoult()
     })
+})
+
+remove.addEventListener('click', () => {
+    removeNumber()
+    updateResoult()
 })
