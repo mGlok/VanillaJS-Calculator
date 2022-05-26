@@ -53,7 +53,8 @@ header {
     font-size: 2rem;
     font-weight: bold;
     width: 300px;
-    white-space: pre-line;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .calc-grid-wrapper {
